@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-	"time"
 )
 
 var domainMap = map[string] http.Handler {
@@ -16,8 +15,7 @@ func main() {
 	http.Handle("/grayscale/", http.StripPrefix("/grayscale/", http.FileServer(http.Dir("./templates/startbootstrap-grayscale"))))
 
 
-	http.Handle("/", http.StripPrefix("/grayscale/", http.FileServer(http.Dir("./templates/startbootstrap-grayscale"))))
-	//http.HandleFunc("/", home)
+	http.HandleFunc("/", ping)
 	http.ListenAndServe(":3040", nil)
 }
 
